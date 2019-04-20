@@ -10,15 +10,30 @@
 
 const mongoose = require ("mongoose");
 const Schema = mongoose.Schema;
+const Modello = mongoose.Schema;
+
 
 const userSchema = new Schema({
-  _id : Number,
-  nome : String,
+  _id     : Number,
+  nome    : String,
   cognome : String,
-  eta : Number
+  eta     : Number
 },
 {versionKey : false});
 
+const schemaName = new Modello({
+    _id     : String,
+    request : String,
+    time    : Number
+},
+{versionKey : false}
+);
+
+
+const Model = mongoose.model('collectionName', schemaName);
 const User = mongoose.model('User', userSchema);
 
-module.exports = User;
+module.exports = {
+  User,
+  Model,
+}
